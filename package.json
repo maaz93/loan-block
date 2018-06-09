@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3"
   },
   "scripts": {
-    "setup" : "concurrently yarn \"cd client && yarn && cd ..\"",
+    "setup": "concurrently yarn \"cd client && yarn && cd ..\"",
     "client": "cd client && yarn start",
     "server": "nodemon server/server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",

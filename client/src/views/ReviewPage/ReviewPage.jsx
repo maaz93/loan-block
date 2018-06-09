@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-nouislider";
+import axios from "custom-axios";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // material-ui components
@@ -19,47 +20,57 @@ import Parallax from "components/Parallax/Parallax.jsx";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
-const users = [
-  {
-    id: 1,
-    reputationPoints: 20,
-    firstName: "Maaz",
-    lastName: "Adeeb",
-    creditScore: 200,
-    city: "Test",
-    country: "India",
-    salary: 200000,
-    country: "India"
-  },
-  {
-    id: 2,
-    reputationPoints: 40,
-    firstName: "Maaz",
-    lastName: "Adeesdsadb",
-    creditScore: 200,
-    city: "Test",
-    country: "India",
-    salary: 400000,
-    country: "India"
-  },
-  {
-    id: 3,
-    reputationPoints: 60,
-    firstName: "Maaz",
-    lastName: "Adeecsafdsafb",
-    creditScore: 200,
-    city: "Test",
-    country: "India",
-    salary: 600000,
-    country: "India"
-  }
-];
+// const users = [
+//   {
+//     id: 1,
+//     reputationPoints: 20,
+//     firstName: "Maaz",
+//     lastName: "Adeeb",
+//     creditScore: 200,
+//     city: "Test",
+//     country: "India",
+//     salary: 200000,
+//     country: "India"
+//   },
+//   {
+//     id: 2,
+//     reputationPoints: 40,
+//     firstName: "Maaz",
+//     lastName: "Adeesdsadb",
+//     creditScore: 200,
+//     city: "Test",
+//     country: "India",
+//     salary: 400000,
+//     country: "India"
+//   },
+//   {
+//     id: 3,
+//     reputationPoints: 60,
+//     firstName: "Maaz",
+//     lastName: "Adeecsafdsafb",
+//     creditScore: 200,
+//     city: "Test",
+//     country: "India",
+//     salary: 600000,
+//     country: "India"
+//   }
+// ];
 
 class ReviewPage extends React.Component {
   state = {
     currentRating: 0,
-    currentUserId: null
+    currentUserId: null,
+    users: []
   };
+
+  componentDidMount() {
+    axios.get("/borrowerList").then(response => {
+      this.setState({
+        users: response.data,
+        currentUserId: response.data.length && response.data[0].id
+      });
+    });
+  }
 
   resetRating = () => {
     this.setState(() => ({ currentRating: 0 }));
@@ -76,8 +87,8 @@ class ReviewPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     const currentUser = this.state.currentUserId
-      ? users.find(({ id }) => this.state.currentUserId === id)
-      : users[0];
+      ? this.state.users.find(({ id }) => this.state.currentUserId === id)
+      : null;
     return (
       <div>
         <Header
@@ -97,7 +108,7 @@ class ReviewPage extends React.Component {
             <GridContainer>
               <GridItem xs={12} sm={4}>
                 <List component="nav">
-                  {users.map(
+                  {this.state.users.map(
                     ({ firstName, lastName, reputationPoints, id }) => {
                       return (
                         <ListItem
@@ -121,44 +132,46 @@ class ReviewPage extends React.Component {
                   )}
                 </List>
               </GridItem>
-              <GridItem xs={12} sm={8}>
-                <h2>
-                  {currentUser.firstName} {currentUser.lastName}
-                </h2>
-                <Table>
-                  <TableBody>
-                    {this.getReviewTableRow(
-                      "Reputation Points",
-                      currentUser.reputationPoints
-                    )}
-                    {this.getReviewTableRow(
-                      "Credit Score",
-                      currentUser.creditScore
-                    )}
-                    {this.getReviewTableRow("City", currentUser.city)}
-                    {this.getReviewTableRow("Country", currentUser.country)}
-                    {this.getReviewTableRow("Salary", currentUser.salary)}
-                  </TableBody>
-                </Table>
-                <h3>Rating</h3>
-                <div style={{ margin: "3rem 0" }}>
-                  <Slider
-                    pips={{
-                      mode: "count",
-                      values: 11
-                    }}
-                    style={{ height: "5px" }}
-                    start={[this.state.currentRating]}
-                    connect={[true, false]}
-                    step={1}
-                    range={{ min: 0, max: 10 }}
-                    onSet={this.handleSliderSet}
-                  />
-                </div>
-                <Button onClick={this.handleRatingSubmit} color="primary">
-                  Rate
-                </Button>
-              </GridItem>
+              {currentUser && (
+                <GridItem xs={12} sm={8}>
+                  <h2>
+                    {currentUser.firstName} {currentUser.lastName}
+                  </h2>
+                  <Table>
+                    <TableBody>
+                      {this.getReviewTableRow(
+                        "Reputation Points",
+                        currentUser.reputationPoints
+                      )}
+                      {this.getReviewTableRow(
+                        "Credit Score",
+                        currentUser.creditScore
+                      )}
+                      {this.getReviewTableRow("City", currentUser.city)}
+                      {this.getReviewTableRow("Country", currentUser.country)}
+                      {this.getReviewTableRow("Salary", currentUser.salary)}
+                    </TableBody>
+                  </Table>
+                  <h3>Rating</h3>
+                  <div style={{ margin: "3rem 0" }}>
+                    <Slider
+                      pips={{
+                        mode: "count",
+                        values: 11
+                      }}
+                      style={{ height: "5px" }}
+                      start={[this.state.currentRating]}
+                      connect={[true, false]}
+                      step={1}
+                      range={{ min: 0, max: 10 }}
+                      onSet={this.handleSliderSet}
+                    />
+                  </div>
+                  <Button onClick={this.handleRatingSubmit} color="primary">
+                    Rate
+                  </Button>
+                </GridItem>
+              )}
             </GridContainer>
           </div>
         </div>

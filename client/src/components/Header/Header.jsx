@@ -76,9 +76,7 @@ class Header extends React.Component {
     });
     const brandComponent = (
       <Link style={{ color: "inherit" }} to="/">
-        <Button href="#" className={classes.title}>
-          {brand}
-        </Button>
+        <Button className={classes.title}>{brand}</Button>
       </Link>
     );
     return (
