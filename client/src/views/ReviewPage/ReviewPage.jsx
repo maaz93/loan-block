@@ -3,26 +3,12 @@ import Slider from "react-nouislider";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // material-ui components
-import InputAdornment from "material-ui/Input/InputAdornment";
 import withStyles from "material-ui/styles/withStyles";
-import Stepper from "material-ui/Stepper/Stepper";
-import Step from "material-ui/Stepper/Step";
-import StepLabel from "material-ui/Stepper/StepLabel";
-import StepContent from "material-ui/Stepper/StepContent";
-import Paper from "material-ui/Paper";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
-import Table, {
-  TableHead,
-  TableRow,
-  TableBody,
-  TableCell
-} from "material-ui/Table";
+import Table, { TableRow, TableBody, TableCell } from "material-ui/Table";
 // @material-ui/icons
-import Check from "@material-ui/icons/Check";
 import Palette from "@material-ui/icons/Palette";
-import People from "@material-ui/icons/People";
 // core components
-import Primary from "components/Typography/Primary";
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -30,8 +16,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
-import CustomButton from "components/CustomButtons/Button.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
@@ -51,7 +35,7 @@ const users = [
     id: 2,
     reputationPoints: 40,
     firstName: "Maaz",
-    lastName: "Adeeb",
+    lastName: "Adeesdsadb",
     creditScore: 200,
     city: "Test",
     country: "India",
@@ -62,7 +46,7 @@ const users = [
     id: 3,
     reputationPoints: 60,
     firstName: "Maaz",
-    lastName: "Adeeb",
+    lastName: "Adeecsafdsafb",
     creditScore: 200,
     city: "Test",
     country: "India",
@@ -73,7 +57,8 @@ const users = [
 
 class ReviewPage extends React.Component {
   state = {
-    currentRating: 0
+    currentRating: 0,
+    currentUserId: null
   };
 
   resetRating = () => {
@@ -86,7 +71,9 @@ class ReviewPage extends React.Component {
 
   render() {
     const { classes, ...rest } = this.props;
-    const currentUser = users[0];
+    const currentUser = this.state.currentUserId
+      ? users.find(({ id }) => this.state.currentUserId === id)
+      : users[0];
     return (
       <div>
         <Header
@@ -109,7 +96,14 @@ class ReviewPage extends React.Component {
                   {users.map(
                     ({ firstName, lastName, reputationPoints, id }) => {
                       return (
-                        <ListItem button kdy={id}>
+                        <ListItem
+                          onClick={() => {
+                            this.resetRating();
+                            this.setState({ currentUserId: id });
+                          }}
+                          button
+                          key={id}
+                        >
                           <ListItemIcon>
                             <Palette />
                           </ListItemIcon>
@@ -157,7 +151,7 @@ class ReviewPage extends React.Component {
                     onSet={this.handleSliderSet}
                   />
                 </div>
-                <CustomButton color="primary">Rate</CustomButton>
+                <Button color="primary">Rate</Button>
               </GridItem>
             </GridContainer>
           </div>
