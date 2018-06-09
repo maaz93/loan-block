@@ -39,9 +39,11 @@ class TeamSection extends React.Component {
                   <img src={team1} alt="..." className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
-                  Gigi Hadid
+                  Shreyas BM
                   <br />
-                  <small className={classes.smallTitle}>Model</small>
+                  <small className={classes.smallTitle}>
+                    Research Staff at Indian Institute of Science
+                  </small>
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
@@ -70,9 +72,11 @@ class TeamSection extends React.Component {
                   <img src={team2} alt="..." className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
-                  Christian Louboutin
+                  Shabaz Ahmed
                   <br />
-                  <small className={classes.smallTitle}>Designer</small>
+                  <small className={classes.smallTitle}>
+                    Software Developer at Microsoft
+                  </small>
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
@@ -98,9 +102,11 @@ class TeamSection extends React.Component {
                   <img src={team3} alt="..." className={imageClasses} />
                 </GridItem>
                 <h4 className={classes.cardTitle}>
-                  Kendall Jenner
+                  Nikhil NJ
                   <br />
-                  <small className={classes.smallTitle}>Model</small>
+                  <small className={classes.smallTitle}>
+                    Data Scientist at LinkedIn
+                  </small>
                 </h4>
                 <CardBody>
                   <p className={classes.description}>
@@ -123,6 +129,74 @@ class TeamSection extends React.Component {
                 </CardFooter>
               </Card>
             </GridItem>
+            <GridItem md={2} />
+            <GridItem xs={12} sm={12} md={4}>
+              <Card plain>
+                <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
+                  <img src={team3} alt="..." className={imageClasses} />
+                </GridItem>
+                <h4 className={classes.cardTitle}>
+                  Maaz Adeeb
+                  <br />
+                  <small className={classes.smallTitle}>
+                    Software Developer at SAP Labs
+                  </small>
+                </h4>
+                <CardBody>
+                  <p className={classes.description}>
+                    You can write here details about one of your team members.
+                    You can give more details about what they do. Feel free to
+                    add some <a href="#pablo">links</a> for people to be able to
+                    follow them outside the site.
+                  </p>
+                </CardBody>
+                <CardFooter className={classes.justifyCenter}>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-twitter"} />
+                  </IconButton>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-instagram"} />
+                  </IconButton>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-facebook"} />
+                  </IconButton>
+                </CardFooter>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={4}>
+              <Card plain>
+                <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
+                  <img src={team3} alt="..." className={imageClasses} />
+                </GridItem>
+                <h4 className={classes.cardTitle}>
+                  Sharath Holla
+                  <br />
+                  <small className={classes.smallTitle}>
+                    Senior Software Developer at Microsoft
+                  </small>
+                </h4>
+                <CardBody>
+                  <p className={classes.description}>
+                    You can write here details about one of your team members.
+                    You can give more details about what they do. Feel free to
+                    add some <a href="#pablo">links</a> for people to be able to
+                    follow them outside the site.
+                  </p>
+                </CardBody>
+                <CardFooter className={classes.justifyCenter}>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-twitter"} />
+                  </IconButton>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-instagram"} />
+                  </IconButton>
+                  <IconButton color="transparent" className={classes.margin5}>
+                    <i className={classes.socials + " fab fa-facebook"} />
+                  </IconButton>
+                </CardFooter>
+              </Card>
+            </GridItem>
+            <GridItem md={2} />
           </GridContainer>
         </div>
       </div>

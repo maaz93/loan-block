@@ -10,7 +10,7 @@ import ListItem from "material-ui/List/ListItem";
 import Tooltip from "material-ui/Tooltip";
 
 // @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
+import { Apps, Input } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -23,7 +23,7 @@ function HeaderLinks({ ...props }) {
   const { classes } = props;
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <CustomDropdown
           buttonText="Components"
           buttonProps={{
@@ -45,18 +45,16 @@ function HeaderLinks({ ...props }) {
             </a>
           ]}
         />
-      </ListItem>
+      </ListItem> */}
       <ListItem className={classes.listItem}>
-        <Button
-          href="https://www.creative-tim.com/product/material-kit-react"
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-        >
-          <CloudDownload className={classes.icons} /> Download
-        </Button>
+        <Link style={{ color: "inherit" }} to="/login-page">
+          <Button color="transparent" className={classes.navLink}>
+            <Input className={classes.icons} />
+            Login
+          </Button>
+        </Link>
       </ListItem>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <Tooltip
           id="instagram-twitter"
           title="Follow us on twitter"
@@ -106,7 +104,7 @@ function HeaderLinks({ ...props }) {
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </IconButton>
         </Tooltip>
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 }

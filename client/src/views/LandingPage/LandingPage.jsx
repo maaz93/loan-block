@@ -32,11 +32,11 @@ class LandingPage extends React.Component {
         <Header
           color="transparent"
           routes={dashboardRoutes}
-          brand="Material Kit React"
+          brand="Loan-Block"
           rightLinks={<HeaderLinks />}
           fixed
           changeColorOnScroll={{
-            height: 400,
+            height: 0,
             color: "white"
           }}
           {...rest}
@@ -45,22 +45,23 @@ class LandingPage extends React.Component {
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
-                <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                <h1 className={classes.title}>Loan-Block.</h1>
                 <h4>
-                  Every landing page needs a small description after the big
-                  bold title, that's why we added this text here. Add here all
-                  the information that can make you or your product create the
-                  first impression.
+                  A decentralized, peer-to-peer application to lend and borrow
+                  money at a competitive rate of interest.
                 </h4>
                 <br />
                 <Button
                   color="danger"
                   size="lg"
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  href="https://youtu.be/Zxhj9Z-PnOw"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fas fa-play" />Watch video
+                  <i
+                    className="fas fa-play"
+                    style={{ marginRight: "0.75rem" }}
+                  />See our pitch
                 </Button>
               </GridItem>
             </GridContainer>
@@ -70,7 +71,6 @@ class LandingPage extends React.Component {
           <div className={classes.container}>
             <ProductSection />
             <TeamSection />
-            <WorkSection />
           </div>
         </div>
         <Footer />
