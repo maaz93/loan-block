@@ -6,6 +6,7 @@
     "express": "^4.16.3"
   },
   "scripts": {
+    "build" : "concurrently yarn \"cd client && yarn && cd ..\"",
     "client": "cd client && yarn start",
     "server": "nodemon server/server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
