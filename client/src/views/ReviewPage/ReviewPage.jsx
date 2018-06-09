@@ -69,6 +69,10 @@ class ReviewPage extends React.Component {
     this.setState(() => ({ currentRating: values[0] }));
   };
 
+  handleRatingSubmit = () => {
+    alert(this.state.currentRating, this.state.currentUserId);
+  };
+
   render() {
     const { classes, ...rest } = this.props;
     const currentUser = this.state.currentUserId
@@ -151,7 +155,9 @@ class ReviewPage extends React.Component {
                     onSet={this.handleSliderSet}
                   />
                 </div>
-                <Button color="primary">Rate</Button>
+                <Button onClick={this.handleRatingSubmit} color="primary">
+                  Rate
+                </Button>
               </GridItem>
             </GridContainer>
           </div>
