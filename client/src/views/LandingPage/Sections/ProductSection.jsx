@@ -3,9 +3,9 @@ import React from "react";
 import withStyles from "material-ui/styles/withStyles";
 
 // @material-ui/icons
-import Chat from "@material-ui/icons/Chat";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Fingerprint from "@material-ui/icons/Fingerprint";
+import Public from "@material-ui/icons/Public";
+import LockOpen from "@material-ui/icons/LockOpen";
+import People from "@material-ui/icons/People";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -20,13 +20,13 @@ class ProductSection extends React.Component {
       <div className={classes.section}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={8}>
-            <h2 className={classes.title}>Let's talk product</h2>
+            <h2 className={classes.title}>Why Loan-Block?</h2>
             <h5 className={classes.description}>
-              This is the paragraph where you can write more details about your
-              product. Keep you user engaged by providing meaningful
-              information. Remember that by this time, the user is curious,
-              otherwise he wouldn't scroll to get here. Add a button if you want
-              the user to see more.
+              Loan-Block has robust reviewing process to generate RPs
+              (Reputation Points) which decides the credit limit, loan interest
+              rates and the ability to influence the chain. Either it be a
+              wealthy person or a layman, all receive the RPs only based on
+              their loan lending/repaying discipline.
             </h5>
           </GridItem>
         </GridContainer>
@@ -35,26 +35,26 @@ class ProductSection extends React.Component {
             <GridItem xs={12} sm={12} md={4}>
               <InfoArea
                 title="Transparent"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                icon={Chat}
-                iconColor="info"
-                vertical
-              />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <InfoArea
-                title="Better rate of interest"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                icon={VerifiedUser}
+                description="Blockchain technology ensures the data integrity."
+                icon={LockOpen}
                 iconColor="success"
                 vertical
               />
             </GridItem>
             <GridItem xs={12} sm={12} md={4}>
               <InfoArea
-                title="P2P rating system"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                icon={Fingerprint}
+                title="Better rate of interest"
+                description="Dynamic interest rates based on their Reputation Points"
+                icon={Public}
+                iconColor="info"
+                vertical
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={4}>
+              <InfoArea
+                title="P2P rewarding system"
+                description="Ability to earn good Reputation Points by actively participating in the community"
+                icon={People}
                 iconColor="danger"
                 vertical
               />
