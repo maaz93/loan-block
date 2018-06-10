@@ -67,7 +67,7 @@ class LendingPage extends React.Component {
     axios.get("/reviewedBorrowerList").then(response => {
       this.setState({
         users: response.data,
-        currentUserId: response.data.length && response.data[0].id
+        currentUserId: response.data.length && response.data[0].ssn
       });
     });
   }
@@ -79,7 +79,7 @@ class LendingPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     const currentUser = this.state.currentUserId
-      ? this.state.users.find(({ id }) => this.state.currentUserId === id)
+      ? this.state.users.find(({ ssn: id }) => this.state.currentUserId === id)
       : null;
     return (
       <div>
@@ -101,7 +101,12 @@ class LendingPage extends React.Component {
               <GridItem xs={12} sm={4}>
                 <List component="nav">
                   {this.state.users.map(
-                    ({ firstName, lastName, reputationPoints, id }) => {
+                    ({
+                      firstname: firstName,
+                      lastname: lastName,
+                      reputationpoints: reputationPoints,
+                      ssn: id
+                    }) => {
                       return (
                         <ListItem
                           onClick={() => {
@@ -126,26 +131,23 @@ class LendingPage extends React.Component {
               {currentUser && (
                 <GridItem xs={12} sm={8}>
                   <h2>
-                    {currentUser.firstName} {currentUser.lastName}
+                    {currentUser.firstname} {currentUser.lastname}
                   </h2>
                   <Table>
                     <TableBody>
                       {this.getReviewTableRow(
                         "Reputation Points",
-                        currentUser.reputationPoints
+                        currentUser.reputationpoints
                       )}
                       {this.getReviewTableRow(
                         "Credit Score",
-                        currentUser.creditScore
+                        currentUser.creditscore
                       )}
                       {this.getReviewTableRow(
                         "Loan Amount Requested",
-                        currentUser.loanAmount
+                        currentUser.loanamount
                       )}
-                      {this.getReviewTableRow(
-                        "Interest Rate",
-                        currentUser.interest
-                      )}
+                      {this.getReviewTableRow("Interest Rate", "7.8")}
                     </TableBody>
                   </Table>
                   <CustomInput
