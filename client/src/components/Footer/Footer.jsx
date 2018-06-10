@@ -3,10 +3,9 @@ import React from "react";
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-import { List, ListItem, withStyles } from "material-ui";
+import { withStyles } from "material-ui";
 
 // @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
 
 import footerStyle from "assets/jss/material-kit-react/components/footerStyle.jsx";
 
@@ -14,10 +13,6 @@ function Footer({ ...props }) {
   const { classes, whiteFont } = props;
   const footerClasses = classNames({
     [classes.footer]: true,
-    [classes.footerWhiteFont]: whiteFont
-  });
-  const aClasses = classNames({
-    [classes.a]: true,
     [classes.footerWhiteFont]: whiteFont
   });
   return (
