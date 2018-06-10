@@ -7,3 +7,7 @@
 1.  cd loan-block
 1.  yarn setup
 1.  yarn dev
+
+## Credits
+
+This is a fork of https://github.com/creativetimofficial/material-kit-react. We've used and modified it as per our needs.

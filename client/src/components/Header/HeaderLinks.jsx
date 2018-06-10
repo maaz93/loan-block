@@ -47,10 +47,23 @@ function HeaderLinks({ ...props }) {
         />
       </ListItem> */}
       <ListItem className={classes.listItem}>
-        <Link style={{ color: "inherit" }} to="/login-page">
+        <Link style={{ color: "inherit" }} to="/borrow">
           <Button color="transparent" className={classes.navLink}>
-            <Input className={classes.icons} />
-            Login
+            Borrow
+          </Button>
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Link style={{ color: "inherit" }} to="/review">
+          <Button color="transparent" className={classes.navLink}>
+            Review
+          </Button>
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Link style={{ color: "inherit" }} to="/lend">
+          <Button color="transparent" className={classes.navLink}>
+            Lend
           </Button>
         </Link>
       </ListItem>

@@ -5,10 +5,16 @@ import axios from "custom-axios";
 import classNames from "classnames";
 // material-ui components
 import withStyles from "material-ui/styles/withStyles";
-import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
+import List, {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader
+} from "material-ui/List";
+import Divider from "material-ui/Divider";
 import Table, { TableRow, TableBody, TableCell } from "material-ui/Table";
 // @material-ui/icons
-import Palette from "@material-ui/icons/Palette";
+import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -67,7 +73,7 @@ class ReviewPage extends React.Component {
     axios.get("/borrowerList").then(response => {
       this.setState({
         users: response.data,
-        currentUserId: response.data.length && response.data[0].id
+        currentUserId: response.data.length && response.data[0].ssn
       });
     });
   }
@@ -81,13 +87,13 @@ class ReviewPage extends React.Component {
   };
 
   handleRatingSubmit = () => {
-    alert(this.state.currentRating, this.state.currentUserId);
+    //alert(this.state.currentRating, this.state.currentUserId);
   };
 
   render() {
     const { classes, ...rest } = this.props;
     const currentUser = this.state.currentUserId
-      ? this.state.users.find(({ id }) => this.state.currentUserId === id)
+      ? this.state.users.find(({ ssn }) => this.state.currentUserId === ssn)
       : null;
     return (
       <div>
@@ -102,31 +108,57 @@ class ReviewPage extends React.Component {
           }}
           {...rest}
         />
-        <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
-        <div className={classNames(classes.main, classes.mainRaised)}>
-          <div style={{ marginLeft: 0 }} className={classes.container}>
+        <Parallax small filter image={require("assets/img/profile-bg.jpg")}>
+          <div className={classes.container}>
             <GridContainer>
-              <GridItem xs={12} sm={4}>
+              <GridItem xs={12} sm={12} md={6}>
+                <h1 className={classes.title} style={{ color: "#fff" }}>
+                  Endorse your peers
+                </h1>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </Parallax>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div style={{ maxWidth: "100%" }} className={classes.container}>
+            <GridContainer>
+              <GridItem
+                xs={12}
+                sm={4}
+                style={{ borderRight: "1px solid rgba(224, 224, 224, 1)" }}
+              >
                 <List component="nav">
+                  <ListSubheader>{`Available Endorsements (${
+                    this.state.users.length
+                  })`}</ListSubheader>
+
                   {this.state.users.map(
-                    ({ firstName, lastName, reputationPoints, id }) => {
+                    ({
+                      firstname: firstName,
+                      lastname: lastName,
+                      reputationpoints: reputationPoints,
+                      ssn: id
+                    }) => {
                       return (
-                        <ListItem
-                          onClick={() => {
-                            this.resetRating();
-                            this.setState({ currentUserId: id });
-                          }}
-                          button
-                          key={id}
-                        >
-                          <ListItemIcon>
-                            <Palette />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={firstName + " " + lastName}
-                            secondary={reputationPoints}
-                          />
-                        </ListItem>
+                        <React.Fragment>
+                          <ListItem
+                            onClick={() => {
+                              this.resetRating();
+                              this.setState({ currentUserId: id });
+                            }}
+                            button
+                            key={id}
+                          >
+                            <ListItemIcon>
+                              <People />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={firstName + " " + lastName}
+                              secondary={reputationPoints}
+                            />
+                          </ListItem>
+                          <Divider />
+                        </React.Fragment>
                       );
                     }
                   )}
@@ -135,17 +167,17 @@ class ReviewPage extends React.Component {
               {currentUser && (
                 <GridItem xs={12} sm={8}>
                   <h2>
-                    {currentUser.firstName} {currentUser.lastName}
+                    {currentUser.firstname} {currentUser.lastname}
                   </h2>
                   <Table>
                     <TableBody>
                       {this.getReviewTableRow(
                         "Reputation Points",
-                        currentUser.reputationPoints
+                        currentUser.reputationpoints
                       )}
                       {this.getReviewTableRow(
                         "Credit Score",
-                        currentUser.creditScore
+                        currentUser.creditscore
                       )}
                       {this.getReviewTableRow("City", currentUser.city)}
                       {this.getReviewTableRow("Country", currentUser.country)}
