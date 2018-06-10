@@ -8,17 +8,12 @@ import Stepper from "material-ui/Stepper/Stepper";
 import Step from "material-ui/Stepper/Step";
 import StepLabel from "material-ui/Stepper/StepLabel";
 import StepContent from "material-ui/Stepper/StepContent";
-import Paper from "material-ui/Paper";
-import Typography from "material-ui/Typography";
 // @material-ui/icons
 import Check from "@material-ui/icons/Check";
-import Palette from "@material-ui/icons/Palette";
 import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";

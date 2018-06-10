@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "react-nouislider";
 import axios from "custom-axios";
 // nodejs library that concatenates classes
 import classNames from "classnames";

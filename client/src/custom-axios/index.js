@@ -23,7 +23,6 @@ instance.interceptors.response.use(
             lastName: "Adeeb",
             creditScore: 200,
             city: "Test",
-            country: "India",
             salary: 200000,
             country: "India"
           },
@@ -34,7 +33,6 @@ instance.interceptors.response.use(
             lastName: "Adeesdsadb",
             creditScore: 200,
             city: "Test",
-            country: "India",
             salary: 400000,
             country: "India"
           },
@@ -45,7 +43,6 @@ instance.interceptors.response.use(
             lastName: "Adeecsafdsafb",
             creditScore: 200,
             city: "Test",
-            country: "India",
             salary: 600000,
             country: "India"
           }
