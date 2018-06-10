@@ -6,9 +6,10 @@ import classNames from "classnames";
 // material-ui components
 import withStyles from "material-ui/styles/withStyles";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
+import Divider from "material-ui/Divider";
 import Table, { TableRow, TableBody, TableCell } from "material-ui/Table";
 // @material-ui/icons
-import Palette from "@material-ui/icons/Palette";
+import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -81,7 +82,7 @@ class ReviewPage extends React.Component {
   };
 
   handleRatingSubmit = () => {
-    alert(this.state.currentRating, this.state.currentUserId);
+    //alert(this.state.currentRating, this.state.currentUserId);
   };
 
   render() {
@@ -102,11 +103,25 @@ class ReviewPage extends React.Component {
           }}
           {...rest}
         />
-        <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
-        <div className={classNames(classes.main, classes.mainRaised)}>
-          <div style={{ marginLeft: 0 }} className={classes.container}>
+        <Parallax small filter image={require("assets/img/profile-bg.jpg")}>
+          <div className={classes.container}>
             <GridContainer>
-              <GridItem xs={12} sm={4}>
+              <GridItem xs={12} sm={12} md={6}>
+                <h1 className={classes.title} style={{ color: "#fff" }}>
+                  Endorse your peers
+                </h1>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </Parallax>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div style={{ maxWidth: "100%" }} className={classes.container}>
+            <GridContainer>
+              <GridItem
+                xs={12}
+                sm={4}
+                style={{ borderRight: "1px solid rgba(224, 224, 224, 1)" }}
+              >
                 <List component="nav">
                   {this.state.users.map(
                     ({
@@ -116,22 +131,25 @@ class ReviewPage extends React.Component {
                       ssn: id
                     }) => {
                       return (
-                        <ListItem
-                          onClick={() => {
-                            this.resetRating();
-                            this.setState({ currentUserId: id });
-                          }}
-                          button
-                          key={id}
-                        >
-                          <ListItemIcon>
-                            <Palette />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={firstName + " " + lastName}
-                            secondary={reputationPoints}
-                          />
-                        </ListItem>
+                        <React.Fragment>
+                          <ListItem
+                            onClick={() => {
+                              this.resetRating();
+                              this.setState({ currentUserId: id });
+                            }}
+                            button
+                            key={id}
+                          >
+                            <ListItemIcon>
+                              <People />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={firstName + " " + lastName}
+                              secondary={reputationPoints}
+                            />
+                          </ListItem>
+                          <Divider />
+                        </React.Fragment>
                       );
                     }
                   )}
