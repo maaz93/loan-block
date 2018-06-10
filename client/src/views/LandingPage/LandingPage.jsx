@@ -3,7 +3,7 @@ import React from "react";
 import classNames from "classnames";
 // material-ui components
 import withStyles from "material-ui/styles/withStyles";
-
+import Particles from "react-particles-js";
 // @material-ui/icons
 
 // core components
@@ -66,6 +66,22 @@ class LandingPage extends React.Component {
               </GridItem>
             </GridContainer>
           </div>
+          <Particles
+            params={{
+              particles: {
+                number: {
+                  value: 150
+                }
+              }
+            }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%"
+            }}
+          />
         </Parallax>
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>

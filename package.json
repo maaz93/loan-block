@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "express": "^4.16.3"
+    "await": "^0.2.6",
+    "eosjs": "^14.1.1",
+    "express": "^4.16.3",
+    "react-particles-js": "^2.2.0",
+    "request": "^2.87.0"
   },
   "scripts": {
-    "setup" : "concurrently yarn \"cd client && yarn && cd ..\"",
+    "setup": "concurrently yarn \"cd client && yarn && cd ..\"",
     "client": "cd client && yarn start",
     "server": "nodemon server/server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
