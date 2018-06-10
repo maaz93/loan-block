@@ -1,23 +1,32 @@
 const express = require("express");
 const Eos = require("eosjs");
 const fs = require("fs");
-
+const bodyParser = require("body-parser");
+Fcbuffer = require("fcbuffer");
 const request = require("request");
 
 const app = express();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 // Optional configuration..
 config = {
   chainId: "cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f", // 32 byte (64 char) hex string
   httpEndpoint: "http://10.101.1.216:8888",
-  keyProvider: "5K7k3Wc6HiKbjYaemkrvgkQD9CFGa4uofJ1z4qTbKHe1ocgnEPC",
+  keyProvider: [
+    "5K7k3Wc6HiKbjYaemkrvgkQD9CFGa4uofJ1z4qTbKHe1ocgnEPC",
+    "5K2bKqicDsx77EzyaE3xYJTSf2ZUL1swU6ifkrCNch8yVVxchMM"
+  ],
   expireInSeconds: 120,
   broadcast: true,
   debug: false, // API and transactions
   sign: true
 };
 eos = Eos(config);
-const appAdmin = "appowner";
+const appAdmin = "eosloanblock";
 // API doc
 // POST api/applyForLoan
 // Body {json key value pairs} will contain  SSN + public key??
@@ -45,16 +54,45 @@ app.get("/api/borrowerList/", (req, res) => {
   });
 });
 
-app.post("/api/setRating/", (req, res) => {
-  const ssn = req.ssn;
-  const reviewer_ssn = req.reviewer_ssn;
-  const rating = req.rating;
+app.post("/api/applyForLoan/", (req, res) => {
+  console.log(JSON.stringify(req.body));
   eos
     .transaction({
       actions: [
         {
           account: "eosloanblock",
-          name: "createendorse",
+          name: "updatedetails",
+          authorization: [
+            {
+              actor: appAdmin,
+              permission: "active"
+            }
+          ],
+          data: req.body
+        }
+      ]
+    })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+app.post("/api/setRating/", (req, res) => {
+  console.log(JSON.stringify(req.body));
+  const ssn = req.body.ssn;
+
+  const reviewer_ssn = req.body.reviewer_ssn;
+  const rating = req.body.rating;
+  eos
+    .transaction({
+      actions: [
+        {
+          account: "eosloanblock",
+          name: "endorse",
           authorization: [
             {
               actor: appAdmin,
@@ -62,9 +100,9 @@ app.post("/api/setRating/", (req, res) => {
             }
           ],
           data: {
-            ssn: ssn,
-            reviewer_ssn,
-            rating
+            ssnfrom: reviewer_ssn,
+            ssnto: ssn,
+            endorsescore: rating
           }
         }
       ]
@@ -101,7 +139,7 @@ app.post("/api/lendMoney", (req, res) => {
       actions: [
         {
           account: "eosloanblock",
-          name: "",
+          name: "createreq",
           authorization: [
             {
               actor: appAdmin,
@@ -109,9 +147,9 @@ app.post("/api/lendMoney", (req, res) => {
             }
           ],
           data: {
-            ssn: ssn,
-            lender_ssn,
-            amount
+            ssnto: ssn,
+            ssnfrom: lender_ssn,
+            amount: amount
           }
         }
       ]
