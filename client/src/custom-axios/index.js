@@ -10,7 +10,10 @@ instance.interceptors.response.use(
   },
   function(error) {
     // Do something with response error
-    if (error.config.url.indexOf("/borrowerList") !== -1) {
+    if (
+      error.config.url.indexOf("/borrowerList") !== -1 ||
+      error.config.url.indexOf("/reviewedBorrowerList") !== -1
+    ) {
       return {
         data: [
           {
